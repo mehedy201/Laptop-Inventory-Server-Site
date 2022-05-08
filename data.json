@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Apple",
+        "img": "https://i.ibb.co/cJdzQpb/student.png",
+        "price": 50,
+        "des": "best Laptop for ever",
+        "quantity": 3,
+        "email": "mehedy643@gamil.com"
+    },
+    {
+        "name": "Apple",
+        "img": "https://i.ibb.co/cJdzQpb/student.png",
+        "price": 50,
+        "des": "best Laptop for ever",
+        "quantity": 3,
+        "email": "mehedy643@gamil.com"
+    },
+    {
+        "name": "Apple",
+        "img": "https://i.ibb.co/cJdzQpb/student.png",
+        "price": 50,
+        "des": "best Laptop for ever",
+        "quantity": 3,
+        "email": "mehedy643@gamil.com"
+    }
+]
