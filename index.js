@@ -26,6 +26,7 @@ async function run() {
       const products = await cursor.toArray();
       res.send(products);
     });
+
     //Get single product from server
     app.get('/products/:id', async(req, res) =>{
       const id = req.params.id;
@@ -35,14 +36,34 @@ async function run() {
     })
 
 
-
-
-
     // Post Form Client Side
     app.post('/products', async(req, res) => {
       const newProduct = req.body;
       console.log(newProduct);
       const result = await assinment11Collection.insertOne(newProduct);
+      res.send(result);
+    })
+
+    // PUT
+    app.put('/products/:id', async (req, res) => {
+      const id = req.params.id;
+      const updatedQuantity = req.body;
+      const filter = {_id: ObjectId(id)};
+      const options = {upsert: true};
+      const updatedDoc = {
+        $set: {
+          quantity: updatedQuantity.quantity
+        }
+      };
+      const result = await assinment11Collection.updateOne(filter, updatedDoc, options);
+      res.send(result);
+    })
+
+    // Delete Product
+    app.delete('/products/:id', async(req, res) => {
+      const id = req.params.id;
+      const query = {_id: ObjectId(id)};
+      const result = await assinment11Collection.deleteOne(query);
       res.send(result);
     })
 
