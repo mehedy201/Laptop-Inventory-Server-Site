@@ -1,14 +1,14 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express());
+app.use(express.json());
 
 
 
@@ -19,13 +19,33 @@ async function run() {
   try{
     await client.connect();
     const assinment11Collection = client.db('assinment11').collection('products');
-    
+    // Get data form Server
     app.get('/products', async(req, res) => {
       const query ={};
       const cursor = assinment11Collection.find(query);
       const products = await cursor.toArray();
       res.send(products);
+    });
+    //Get single product from server
+    app.get('/products/:id', async(req, res) =>{
+      const id = req.params.id;
+      const query = {_id: ObjectId(id)};
+      const product = await assinment11Collection.findOne(query);
+      res.send(product);
     })
+
+
+
+
+
+    // Post Form Client Side
+    app.post('/products', async(req, res) => {
+      const newProduct = req.body;
+      console.log(newProduct);
+      const result = await assinment11Collection.insertOne(newProduct);
+      res.send(result);
+    })
+
   }
   finally{
 
