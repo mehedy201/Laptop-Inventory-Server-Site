@@ -35,15 +35,6 @@ async function run() {
       res.send(product);
     })
 
-    // Get product using email
-    app.get('/products/email', async(req, res) =>{
-      const email = req.query.email;
-      const query = {email: email};
-      const cursor = assinment11Collection.find(query);
-      const product = await cursor.toArray();
-      res.send(product);
-    })
-
 
     // Post Form Client Side
     app.post('/products', async(req, res) => {
